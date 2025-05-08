@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -12,7 +14,7 @@ const port = 5000;
 
 // CORS設定
 app.use(cors({
-  origin: 'https://line-reserve-frontend.onrender.com',
+  origin: process.env.FRONTEND_ORIGIN,
   credentials: true,
 }));
 
@@ -21,8 +23,8 @@ const upload = multer({ dest: 'uploads/' });
 
 // LINE APIの設定
 const config = {
-  channelAccessToken: "dPRqAuTyyRQZOjRRXM5EV+EAixmfJTDvdCqAfLLTfGY9XLoT6zTW5lR5zuBOwGnfls8/qAthhrUsh6kaYTME7INJsuSzmHWznfryc8mVGlyXGzXzxOgW5fuYifPL+A9moY3vIGXcmIs+q7v27V0ZnAdB04t89/1O/w1cDnyilFU=",
-  channelSecret: "8491385c13e3488c4cb7c221aa7555d8",
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
 };
 const lineClient = new Client(config);
 
@@ -36,7 +38,7 @@ const auth = new google.auth.GoogleAuth({
 });
 
 // スプレッドシートID
-const SPREADSHEET_ID = '1L1qmP86xk_P8qIHr6biF3_SYUw9sfbmbPzW7djZ22hs';
+const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
 
 // Webhookエンドポイント（LINE Bot用）
 app.post('/callback', (req, res) => {
