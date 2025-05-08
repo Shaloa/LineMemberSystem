@@ -13,6 +13,8 @@ const RegisterForm = () => {
 	userId: "",
   });
   
+  const API_BASE = process.env.REACT_APP_API_URL;
+  
   const [liffInitialized, setLiffInitialized] = useState(false);
   
   const [loading, setLoading] = useState(true);
@@ -34,7 +36,7 @@ const RegisterForm = () => {
 			  setLoading(false);
 			  
 			  try {
-				const res = await fetch(`https://linemembersystem-api.onrender.com/api/userinfo?userId=${profile.userId}`);
+				const res = await fetch(`${API_BASE}/api/userinfo?userId=${profile.userId}`)
 				if (res.ok) {
 					const result = await res.json();
 					if (result.success && result.data) {
@@ -97,7 +99,7 @@ const RegisterForm = () => {
   formData.append('agreed', form.agreed);
 
   try {
-    const res = await fetch('https://linemembersystem-api.onrender.com/api/register', {
+    const res = await fetch(`${API_BASE}/api/register`, {
       method: 'POST',
       body: formData,
     });
