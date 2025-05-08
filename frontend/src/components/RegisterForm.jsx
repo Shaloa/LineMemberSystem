@@ -34,7 +34,7 @@ const RegisterForm = () => {
 			  setLoading(false);
 			  
 			  try {
-				const res = await fetch(`https://line-reserve-system.onrender.com/api/userinfo?userId=${profile.userId}`);
+				const res = await fetch(`https://linemembersystem-api.onrender.com/api/userinfo?userId=${profile.userId}`);
 				if (res.ok) {
 					const result = await res.json();
 					if (result.success && result.data) {
@@ -97,7 +97,7 @@ const RegisterForm = () => {
   formData.append('agreed', form.agreed);
 
   try {
-    const res = await fetch('https://line-reserve-system.onrender.com/api/register', {
+    const res = await fetch('https://linemembersystem-api.onrender.com/api/register', {
       method: 'POST',
       body: formData,
     });
