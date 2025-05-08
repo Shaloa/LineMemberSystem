@@ -13,7 +13,7 @@ const RegisterForm = () => {
 	userId: "",
   });
   
-  const API_BASE = process.env.REACT_APP_API_URL;
+  const API_BASE = process.env.REACT_APP_API_BASE_URL;
   
   const [liffInitialized, setLiffInitialized] = useState(false);
   
